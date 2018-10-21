@@ -1,0 +1,9 @@
+{"editor.insertSpaces": false,
+	"files.encoding": "gbk",
+	"files.associations": {
+		"*.cjson": "jsonc",
+		"*.wxss": "css",
+		"*.wxs": "javascript",
+		"malloc.h": "c"
+	}
+}
