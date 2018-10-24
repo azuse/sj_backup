@@ -1,0 +1,12 @@
+[Unit]
+Description=test-1652238.service
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/test-1652238
+PIDFile=/var/run/test-1652238.pid	
+StandardOutput=syslog
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

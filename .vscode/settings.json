@@ -4,6 +4,12 @@
 		"*.cjson": "jsonc",
 		"*.wxss": "css",
 		"*.wxs": "javascript",
-		"malloc.h": "c"
-	}
+		"malloc.h": "c",
+		"initializer_list": "c",
+		"xiosbase": "c",
+		"xstring": "c",
+		"xutility": "c",
+		"semaphore.h": "c"
+	},
+	"files.eol": "\n"
 }
