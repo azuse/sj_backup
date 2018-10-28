@@ -15,6 +15,9 @@ make install DIRROOT=%{buildroot}
 %pre        
 echo "准备安装 test-1652238"
 %post       
+systemctl daemon-reload
+systemctl enable test-1652238
+systemctl start test-1652238
 echo "完成安装 test-1652238s"
 %preun      
 echo "准备卸载 test-1652238"

@@ -1,4 +1,6 @@
 # makefile
+EXECNAME=test-1652238
+
 all : lib1652238 test
 
 test : 	test.c
@@ -11,12 +13,18 @@ lib1652238	:	lib1652238.c
 
 install	: all
 	mkdir -p $(DIRROOT)/usr $(DIRROOT)/usr/sbin $(DIRROOT)/usr/lib64 $(DIRROOT)/etc $(DIRROOT)/usr/lib $(DIRROOT)/usr/lib/systemd $(DIRROOT)/usr/lib/systemd/system
-	cp test $(DIRROOT)/usr/sbin/test-1652238
+	cp test $(DIRROOT)/usr/sbin/$(EXECNAME)
 	cp lib1652238.so $(DIRROOT)/usr/lib64
 	mkdir -p $(DIRROOT)/usr/1652238
 	cp 1652238.dat $(DIRROOT)/usr/1652238
 	cp 1652238.conf $(DIRROOT)/etc
 	cp test-1652238.service $(DIRROOT)/usr/lib/systemd/system/
+ifeq ($(DIRROOT), )
+	systemctl daemon-reload
+	systemctl enable test-1652238
+	systemctl start test-1652238
+endif
+
 rpm	:
 	mkdir -p SOURCES
 	mkdir -p BUILD
@@ -36,11 +44,12 @@ rpm	:
 
 	rm -rf BUILD BUILDROOT RPMS SRPMS SOURCES SPECS test-1652238-1.0.0 
 uninstall	:
-	systemctl stop test-1652238
-	rm -f $(DIRROOT)/usr/sbin/test-1652238 $(DIRROOT)/usr/lib64/lib1652238 $(DIRROOT)/etc/1652238.conf $(DIRROOT)/usr/1652238/1652238.dat 
+	systemctl -q stop test-1652238 
+	rm -f $(DIRROOT)/usr/sbin/$(EXECNAME) $(DIRROOT)/usr/lib64/lib1652238 $(DIRROOT)/etc/1652238.conf $(DIRROOT)/usr/1652238/1652238.dat 
 	rm -df $(DIRROOT)/usr/1652238
 	rm -f *.o test lib1652238.so
 	rm -f $(DIRROOT)/usr/lib/systemd/system/test-1652238.service
+	systemctl daemon-reload
 
 clean:
 	rm -rf BUILD BUILDROOT RPMS SRPMS SOURCES SPECS test-1652238-1.0.0 

@@ -9,7 +9,8 @@
 		"xiosbase": "c",
 		"xstring": "c",
 		"xutility": "c",
-		"semaphore.h": "c"
+		"semaphore.h": "c",
+		"xmemory0": "c"
 	},
 	"files.eol": "\n"
 }

@@ -83,6 +83,9 @@ void daemon_by_hand()
 
 int main(int argc, char *argv[])
 {
+	char pid_name_origin[16];
+	strcpy(pid_name_origin,argv[0]);
+
 	time_t start_t, now_t;
 	time(&start_t);
 	int diff_t;
@@ -104,8 +107,8 @@ int main(int argc, char *argv[])
 	char comm_name[MAXLINE];
 	time(&now_t);
 	diff_t = difftime(now_t, start_t);
-	snprintf(pid_name, 30, " test [main %02d:%02d:%02d]", diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
-	snprintf(comm_name, 16, " test [main]");
+	snprintf(pid_name, 40, "%s [main %02d:%02d:%02d]",pid_name_origin, diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
+	snprintf(comm_name, 16, "%s [main]",pid_name_origin);
 	prctl(PR_SET_NAME, comm_name);
 	strcpy(g_main_Argv[0], pid_name);
 
@@ -134,8 +137,8 @@ int main(int argc, char *argv[])
 			time(&start_t);
 			time(&now_t);
 			diff_t = difftime(now_t, start_t);
-			snprintf(pid_name, 30, " test [sub-%02d %02d:%02d:%02d]", i, diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
-			snprintf(comm_name, 16, " test [sub-%02d]", i);
+			snprintf(pid_name, 40, "%s [sub-%02d %02d:%02d:%02d]",pid_name_origin, i, diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
+			snprintf(comm_name, 16, "%s [sub-%02d]",pid_name_origin, i);
 			prctl(PR_SET_NAME, comm_name);
 			strcpy(g_main_Argv[0], pid_name);
 			break;
@@ -151,7 +154,7 @@ int main(int argc, char *argv[])
 			myson[i] = pid;
 			time(&now_t);
 			diff_t = difftime(now_t, start_t);
-			snprintf(pid_name, 30, " test [main %02d:%02d:%02d]", diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
+			snprintf(pid_name, 40, "%s [main %02d:%02d:%02d]",pid_name_origin, diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
 			strcpy(g_main_Argv[0], pid_name);
 		}
 		sleep(1);
@@ -163,14 +166,16 @@ int main(int argc, char *argv[])
 		{
 			time(&now_t);
 			diff_t = difftime(now_t, start_t);
-			snprintf(pid_name, 30, " test [sub-%02d %02d:%02d:%02d]", i, diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
+			snprintf(pid_name, 40, "%s [sub-%02d %02d:%02d:%02d]",pid_name_origin, i, diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
 			strcpy(g_main_Argv[0], pid_name);
+			snprintf(comm_name, 16, "%s [sub-%02d]",pid_name_origin, i);
+			prctl(PR_SET_NAME, comm_name);
 		}
 		else
 		{
 			time(&now_t);
 			diff_t = difftime(now_t, start_t);
-			snprintf(pid_name, 30, " test [main %02d:%02d:%02d]", diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
+			snprintf(pid_name, 40, "%s [main %02d:%02d:%02d]",pid_name_origin, diff_t / 3600, (diff_t % 3600 - diff_t % 60) / 60, diff_t % 60);
 			strcpy(g_main_Argv[0], pid_name);
 			for (i = 0; i < 10; i++)
 			{
