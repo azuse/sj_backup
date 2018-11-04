@@ -10,7 +10,10 @@
 		"xstring": "c",
 		"xutility": "c",
 		"semaphore.h": "c",
-		"xmemory0": "c"
+		"xmemory0": "c",
+		"istream": "c",
+		"ostream": "c",
+		"*.tcc": "c"
 	},
 	"files.eol": "\n"
 }
