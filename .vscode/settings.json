@@ -13,7 +13,9 @@
 		"xmemory0": "c",
 		"istream": "c",
 		"ostream": "c",
-		"*.tcc": "c"
+		"*.tcc": "c",
+		"stdlib.h": "c",
+		"signal.h": "c"
 	},
 	"files.eol": "\n"
 }
