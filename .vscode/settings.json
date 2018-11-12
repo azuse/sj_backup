@@ -15,7 +15,9 @@
 		"ostream": "c",
 		"*.tcc": "c",
 		"stdlib.h": "c",
-		"signal.h": "c"
+		"signal.h": "c",
+		"xlocale": "c",
+		"unistd.h": "c"
 	},
 	"files.eol": "\n"
 }

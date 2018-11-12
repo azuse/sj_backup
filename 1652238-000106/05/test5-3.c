@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <sys/prctl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 static void sig_child(int signo);
 
